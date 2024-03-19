@@ -1,0 +1,12 @@
+com.example.gui_flutter.app-core-1.6.0-0 C:\Users\s0lbj\.gradle\caches\transforms-3\200a576eda084a09550ebc2ea22cb4a5\transformed\core-1.6.0\res
+com.example.gui_flutter.app-jetified-annotation-experimental-1.1.0-1 C:\Users\s0lbj\.gradle\caches\transforms-3\25d10a17dc8ad1a5b3e7a462dcbe183e\transformed\jetified-annotation-experimental-1.1.0\res
+com.example.gui_flutter.app-jetified-window-java-1.0.0-beta04-2 C:\Users\s0lbj\.gradle\caches\transforms-3\4b3a5ba95f21a06952d568097b3e5266\transformed\jetified-window-java-1.0.0-beta04\res
+com.example.gui_flutter.app-jetified-window-1.0.0-beta04-3 C:\Users\s0lbj\.gradle\caches\transforms-3\4b5a18471ec833030c46d3531975dc92\transformed\jetified-window-1.0.0-beta04\res
+com.example.gui_flutter.app-debug-4 C:\Users\s0lbj\Desktop\Personal Portfolio\MediPal\gui_flutter\android\app\src\debug\res
+com.example.gui_flutter.app-main-5 C:\Users\s0lbj\Desktop\Personal Portfolio\MediPal\gui_flutter\android\app\src\main\res
+com.example.gui_flutter.app-pngs-6 C:\Users\s0lbj\Desktop\Personal Portfolio\MediPal\gui_flutter\build\app\generated\res\pngs\debug
+com.example.gui_flutter.app-resValues-7 C:\Users\s0lbj\Desktop\Personal Portfolio\MediPal\gui_flutter\build\app\generated\res\resValues\debug
+com.example.gui_flutter.app-rs-8 C:\Users\s0lbj\Desktop\Personal Portfolio\MediPal\gui_flutter\build\app\generated\res\rs\debug
+com.example.gui_flutter.app-mergeDebugResources-9 C:\Users\s0lbj\Desktop\Personal Portfolio\MediPal\gui_flutter\build\app\intermediates\incremental\debug\mergeDebugResources\merged.dir
+com.example.gui_flutter.app-mergeDebugResources-10 C:\Users\s0lbj\Desktop\Personal Portfolio\MediPal\gui_flutter\build\app\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+com.example.gui_flutter.app-merged_res-11 C:\Users\s0lbj\Desktop\Personal Portfolio\MediPal\gui_flutter\build\app\intermediates\merged_res\debug

@@ -1,0 +1,4 @@
+#Sat Mar 09 21:43:34 PST 2024
+base.0=C\:\\Users\\s0lbj\\Desktop\\Personal Portfolio\\MediPal\\gui_flutter\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
