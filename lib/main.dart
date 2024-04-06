@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // firebase
 import 'package:firebase_core/firebase_core.dart'; // firebase core
+import 'package:medipal/forms/upload_image.dart';
 import 'package:medipal/pages/signup.dart';
 import 'package:medipal/pages/patientpage.dart';
 import 'package:medipal/pages/login.dart';
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
         '/PatientForm': (context) => PatientForm(),
         '/PatientPage': (context) => PatientPage(),
         '/PatientList': (context) => PatientList(),
+        '/UploadImage': (context) => UploadImage(),
       },
     );
   }
@@ -90,7 +92,8 @@ class HomePage extends StatelessWidget {
             ButtonWidget('Sign Up', '/SignUp'),
             ButtonWidget('PatientForm', '/PatientForm'),
             ButtonWidget('PatientPage', '/PatientPage'),
-            ButtonWidget('PatientList', '/PatientList')
+            ButtonWidget('PatientList', '/PatientList'),
+            ButtonWidget('UploadImage', '/UploadImage')
             /* FirebaseAuth.instance.currentUser != null
                 ? Align(
                     alignment: Alignment.bottomCenter,
