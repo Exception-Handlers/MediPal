@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:medipal/forms/input_template.dart';
 import 'package:medipal/objects/patient.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class GeneralInfoForm extends StatefulWidget {
   final Patient patient;
@@ -27,6 +31,48 @@ class GeneralInfoFormState extends State<GeneralInfoForm> {
   List<String> bloodGroups = ['A', 'B', 'AB', 'O'];
   List<String> rhFactors = ['+', '-'];
   List<String> phoneTypes = ['home', 'work', 'mobile'];
+  File? imageFile;
+  double uploadProgress = 0;
+  String? uploadStatus;
+
+  Future<void> pickImage() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      setState(() {
+        imageFile = File(image.path); // Store the actual picked image path
+      });
+    }
+  }
+
+  Future<void> uploadImage() async {
+    if (imageFile == null) return;
+
+    final metadata = SettableMetadata(contentType: "image/jpeg");
+    final storageRef = FirebaseStorage.instance.ref();
+    final uploadTask = storageRef
+        .child("images/${DateTime.now()}.jpg")
+        .putFile(imageFile!, metadata);
+
+    uploadTask.snapshotEvents.listen((TaskSnapshot taskSnapshot) {
+      setState(() {
+        uploadProgress =
+            100.0 * (taskSnapshot.bytesTransferred / taskSnapshot.totalBytes);
+        uploadStatus = taskSnapshot.state == TaskState.running
+            ? "Uploading..."
+            : "Upload complete";
+      });
+
+      if (taskSnapshot.state == TaskState.success) {
+        // Handle successful upload (e.g., navigate to next form)
+        print("Upload successful!");
+        // You can potentially navigate to the next form here
+      } else if (taskSnapshot.state == TaskState.error) {
+        // Handle unsuccessful upload
+        print("Upload failed!");
+        // Display error message to the user
+      }
+    });
+  }
 
   // build
   @override
@@ -38,6 +84,29 @@ class GeneralInfoFormState extends State<GeneralInfoForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Column(
+                children: [
+                  if (imageFile != null)
+                    Image.file(imageFile!, height: 200, width: 200),
+                  Row(
+                    children: <Widget>[
+                      ElevatedButton(
+                        onPressed: pickImage,
+                        child: Text('Select Image'),
+                      ),
+                      ElevatedButton(
+                        onPressed: uploadImage,
+                        child: Text('Upload Image'),
+                      ),
+                      if (uploadStatus != null)
+                        Text(
+                          uploadStatus!,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
               buildTextFormField(
                 labelText: 'First Name',
                 value: widget.patient.firstName,
@@ -254,7 +323,7 @@ class GeneralInfoFormState extends State<GeneralInfoForm> {
                         SizedBox(width: 10),
                         Expanded(
                           child: buildTextFormField(
-                            labelText: 'Phone Number ${index+1}',
+                            labelText: 'Phone Number ${index + 1}',
                             value: contact.phoneNumber?.toString(),
                             onChanged: (value) {
                               contact.phoneNumber = value;
@@ -265,8 +334,10 @@ class GeneralInfoFormState extends State<GeneralInfoForm> {
                               }
                               return null;
                             },
-                            onSuffixIconTap:
-                                index == 0 ? null : () => _removeField(widget.patient.phone,index),
+                            onSuffixIconTap: index == 0
+                                ? null
+                                : () =>
+                                    _removeField(widget.patient.phone, index),
                           ),
                         ),
                       ],
@@ -287,13 +358,14 @@ class GeneralInfoFormState extends State<GeneralInfoForm> {
               Text('Emergancy Contacts'),
               Column(
                 children: [
-                  ...List.generate(widget.patient.emergency?.length ?? 0, (index) {
+                  ...List.generate(widget.patient.emergency?.length ?? 0,
+                      (index) {
                     EmergancyData contact = widget.patient.emergency![index];
                     return Row(
                       children: [
                         Expanded(
                           child: buildTextFormField(
-                            labelText: 'Name ${index+1}',
+                            labelText: 'Name ${index + 1}',
                             value: contact.name?.toString(),
                             onChanged: (value) {
                               contact.name = value;
@@ -328,7 +400,7 @@ class GeneralInfoFormState extends State<GeneralInfoForm> {
                         SizedBox(width: 10),
                         Expanded(
                           child: buildTextFormField(
-                            labelText: 'Phone Number ${index+1}',
+                            labelText: 'Phone Number ${index + 1}',
                             value: contact.phoneNumber?.toString(),
                             onChanged: (value) {
                               contact.phoneNumber = value;
@@ -339,8 +411,10 @@ class GeneralInfoFormState extends State<GeneralInfoForm> {
                               }
                               return null;
                             },
-                            onSuffixIconTap:
-                                index == 0 ? null : () => _removeField(widget.patient.emergency,index),
+                            onSuffixIconTap: index == 0
+                                ? null
+                                : () => _removeField(
+                                    widget.patient.emergency, index),
                           ),
                         ),
                       ],

@@ -71,14 +71,17 @@ class _PatientFormState extends State<PatientForm> {
       }
     });
   }
+
   void _submitForm() {
     // Validate returns true if the form is valid, or false otherwise.
     //print("gen: ${_generalInfoFormKey.currentState!.validate()}");
     //print("health: ${_healthConditionsFormKey.currentState!.validate()}");
     //print("med: ${_medicationsFormKey.currentState!.validate()}");
-    if (_generalInfoFormKey.currentState!.validate()/*&&
+    if (_generalInfoFormKey.currentState!
+            .validate() /*&&
         _healthConditionsFormKey.currentState!.validate() &&
-        _medicationsFormKey.currentState!.validate() */) {
+        _medicationsFormKey.currentState!.validate() */
+        ) {
       // database connection
       DatabaseReference ref = FirebaseDatabase.instance.ref('patient');
       //DatabaseReference newPatientRef = ref.child(_patientKey);

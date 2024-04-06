@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 class Patient {
   // VARTIABLES
   // personal info
+  String? id;
   // name
   String? firstName;
   String? middleName;
