@@ -12,6 +12,8 @@ class Patient {
   // blood
   String? bloodGroup;
   String? rhFactor;
+  String? sex;
+  String? location;
   String? maritalStatus;
   // contact
   String? email;
@@ -52,6 +54,8 @@ class Patient {
       'firstName': firstName,
       'middleName': middleName,
       'lastName': lastName,
+      'location': location,
+      'sex': sex,
       'dob': dob?.toIso8601String(),
       'bloodGroup': bloodGroup,
       'rhFactor': rhFactor,
@@ -66,6 +70,33 @@ class Patient {
       'medicationsPrev': prevMedications ?? [],
     };
   }
+  factory Patient.fromMap( Map<String,dynamic> jsonMap ) {
+    Patient p = Patient();
+    p.firstName = jsonMap['firstName'];
+    p.middleName = jsonMap['middleName'];
+    p.lastName = jsonMap['lastName'];
+    p.sex = jsonMap['sex'];
+    p.location = jsonMap['location'];
+    p.dob = jsonMap['dob'] != null ? DateTime.parse(jsonMap['dob']) : null;
+    p.bloodGroup = jsonMap['bloodGroup'];
+    p.rhFactor = jsonMap['rhFactor'];
+    p.email = jsonMap['email'];
+    p.phone = (jsonMap["phone"] as List<dynamic>)
+        .map((phoneMap) => PhoneData(
+            phoneNumber: phoneMap["phoneNumber"] as String,
+            type: phoneMap["type"] as String))
+        .toList();
+    List<dynamic>? allergiesList = jsonMap['allergies'];
+    if (allergiesList is List<dynamic>) {
+      p.allergies = allergiesList.cast<String>(); // Cast to List<String>
+    }
+    List<dynamic>? currList = jsonMap['illnessCurr'];
+    if (currList is List<dynamic>) {
+      p.currIllness = currList.cast<String>(); // Cast to List<String>
+    }
+    List<dynamic>? prevList = jsonMap['illnessPrev'];
+    if (prevList is List<dynamic>) {
+      p.prevIllness = prevList.cast<String>(); // Cast to List<String>
 
   factory Patient.fromSnapshot(DataSnapshot snapshot) {
     if (snapshot.exists) {
@@ -80,6 +111,8 @@ class Patient {
     p.firstName = jsonMap['firstName'];
     p.middleName = jsonMap['middleName'];
     p.lastName = jsonMap['lastName'];
+    p.sex = jsonMap['sex'];
+    p.location = jsonMap['location'];
     p.dob = jsonMap['dob'] != null ? DateTime.parse(jsonMap['dob']) : null;
     p.bloodGroup = jsonMap['bloodGroup'];
     p.rhFactor = jsonMap['rhFactor'];
@@ -132,6 +165,8 @@ class Patient {
     str += "firstName: $firstName\n";
     str += "middleName: $middleName\n";
     str += "lastName: $lastName\n";
+    str += "sex: $sex\n";
+    str += "location:";
     str += "dob: $dob\n";
     str += "bloodGroup: $bloodGroup\n";
     str += "rhFactor: $rhFactor\n";

@@ -34,7 +34,8 @@ class _PatientListState extends State<PatientList> {
       List<Patient> pl = [];
       jsonMap.forEach((key, value) {
         //print(key);
-        Patient p = Patient.fromMap(value.cast<String, dynamic>());
+        print(value);
+        Patient p = Patient.fromMap(value);
         //print(p);
         pl.add(p);
         setState(() {
