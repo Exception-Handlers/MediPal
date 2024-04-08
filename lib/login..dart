@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:medipal/constant/images.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:medipal/main.dart';
-import 'package:medipal/pages/signup.dart';
+import 'package:medipal/pages/SignUp.dart';
 import 'package:medipal/pages/forgotpasswd.dart';
 
 class LoginPage extends StatefulWidget {
@@ -120,8 +120,9 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(height: 75.0),
                   Align(
                     alignment: Alignment.center,
-                    child: FractionallySizedBox(
-                      widthFactor: 0.78,
+                    child: SizedBox(
+                      width: 290,
+                      height: 42.66,
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -140,12 +141,10 @@ class _LoginPageState extends State<LoginPage> {
                           controller: _usernameController,
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            labelText: 'Email or phone',
+                            hintText: '      Email or phone',
                             labelStyle: TextStyle(
                                 color: Colors.grey,
                                 fontWeight: FontWeight.normal),
-                            contentPadding:
-                                EdgeInsets.symmetric(horizontal: 10.0),
                           ),
                         ),
                       ),
@@ -154,8 +153,9 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(height: 19.69),
                   Align(
                     alignment: Alignment.center,
-                    child: FractionallySizedBox(
-                      widthFactor: 0.78,
+                    child: SizedBox(
+                      width: 290,
+                      height: 42.66,
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -174,14 +174,11 @@ class _LoginPageState extends State<LoginPage> {
                           controller: _passwordController,
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            labelText: 'Password',
+                            hintText: '      Password',
                             labelStyle: TextStyle(
                                 color: Colors.grey,
                                 fontWeight: FontWeight.normal),
-                            contentPadding:
-                                EdgeInsets.symmetric(horizontal: 10.0),
                           ),
-                          obscureText: true,
                         ),
                       ),
                     ),
@@ -194,8 +191,7 @@ class _LoginPageState extends State<LoginPage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => ForgotPassPage()),
+                          MaterialPageRoute(builder: (context) => ForgotAuth()),
                         );
                       },
                       child: Text(
