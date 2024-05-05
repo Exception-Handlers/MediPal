@@ -21,7 +21,7 @@ import 'package:medipal/form_patient.dart';
 import 'package:medipal/pages/forgotpasswd.dart';
 import 'package:medipal/pages/signup.dart';
 import 'package:medipal/pages/login.dart';
-import 'package:medipal/pages/systemPage.dart';
+import 'package:medipal/pages/settingsPage.dart';
 
 void main() async {
   // initialize firebase
