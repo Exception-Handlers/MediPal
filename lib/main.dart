@@ -21,6 +21,7 @@ import 'package:medipal/form_patient.dart';
 import 'package:medipal/pages/forgotpasswd.dart';
 import 'package:medipal/pages/signup.dart';
 import 'package:medipal/pages/login.dart';
+import 'package:medipal/pages/systemPage.dart';
 
 void main() async {
   // initialize firebase
@@ -56,7 +57,10 @@ class MyApp extends StatelessWidget {
         '/AppointmentPage': (context) => AppointmentPage(),
         '/ChatListPage': (context) => ChatListPage(),
         '/Dashboard': (context) => Dashboard(),
-        '/chat': (context) => ChatScreen(receiverUserEmail: '',),
+        '/chat': (context) => ChatScreen(
+              receiverUserEmail: '',
+            ),
+        '/Settings': (context) => SettingsPage(),
       },
     );
   }
@@ -97,6 +101,7 @@ class HomePage extends StatelessWidget {
             ButtonWidget('Appointmentpage', '/AppointmentPage'),
             ButtonWidget('ChatListPage', '/ChatListPage'),
             ButtonWidget('Dashboard', '/Dashboard'),
+            ButtonWidget('Settings', '/Settings'),
             /* FirebaseAuth.instance.currentUser != null
                 ? Align(
                     alignment: Alignment.bottomCenter,
